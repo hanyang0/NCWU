@@ -1,0 +1,26 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    113.1569108672312,
+                    33.50999427733084,
+                    0
+                ]
+            },
+            "properties": {
+                "styleUrl": "#40Style",
+                "styleHash": "-60dc6007",
+                "description": "       <br />ID: <b >1</b>       <br />Height [m]: <b >137.9</b>, Height St Dev [m]: <b >0.0</b>        <br />Height relative to Ground [m]: <b >5.7</b>        <br />Velocity [mm/year]: <b >4.4</b>, Velocity St Dev [mm/year]: <b >0.00</b>        <br />Displ. to Temper. Ratio [mm/degC]: <b >0.00</b>, Cumulative Displacement [mm]: <b >3.2</b>        <br />Temporal Coherence: <b >0.98</b>, Sample: <b >619</b>, Line: <b >4</b>       <br />Std Dev. [mm]: <b >1.0</b> Data Nr.: <b > 23</b> <br />",
+                "js":"        g = new Dygraph(               document.getElementById(\"graphdiv\"),               \"Date,Displacement\\n\" +       \"2016-10-02,0.0\\n\" +        \"2016-10-14,-1.8\\n\" +        \"2016-10-26,-2.9\\n\" +        \"2016-11-07,-2.7\\n\" +        \"2016-11-19,-2.7\\n\" +        \"2016-12-01,-1.7\\n\" +        \"2016-12-13,-2.6\\n\" +        \"2016-12-25,-2.1\\n\" +        \"2017-01-06,-1.6\\n\" +        \"2017-01-18,-2.6\\n\" +        \"2017-01-30,-1.9\\n\" +        \"2017-02-11,-0.9\\n\" +        \"2017-02-23,-1.2\\n\" +        \"2017-03-07,-1.3\\n\" +        \"2017-03-19,-0.6\\n\" +        \"2017-03-31,-0.4\\n\" +        \"2017-04-12,-0.9\\n\" +        \"2017-04-24,1.1\\n\" +        \"2017-05-06,0.6\\n\" +        \"2017-05-18,0.1\\n\" +        \"2017-05-30,0.5\\n\" +        \"2017-06-11,-2.0\\n\" +        \"2017-06-23,1.7e+00\\n\",        {       valueRange: [-100,100],       ylabel: \"[mm]\",       }       );       ",
+                "icon-opacity": 1,
+                "icon-color": "#00ffff",
+                "icon-scale": 0.5,
+                "icon": "shaded_dot.png"
+            }
+        }
+]
+}
