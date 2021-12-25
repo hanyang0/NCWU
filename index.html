@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,user-scalable=0,minimum-scale=1.0,maximum-scale=1.0"/>
+    <meta name="author" content="火星科技 http://mars3d.cn "/>
+    <meta name="apple-touch-fullscreen" content="yes"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="x5-fullscreen" content="true"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+    <link rel="shortcut icon" href="images/rc.png" type="image/x-icon">
+    <title>水利大数据平台</title>
+
+    <script type="text/javascript" src="lib/include-lib.js" libpath="lib/"
+            include="jquery,font-awesome,bootstrap,layer,haoutil,turf,bootstrap-slider,bootstrap-checkbox,mars3d,mars3d-echarts"></script>
+    <link href="css/style.css" rel="stylesheet"/>
+    <link href="css/btnbar.css" rel="stylesheet"/>
+    <script src="js/btnbar.js"></script>
+    <link href="css/dygraph.css" rel="stylesheet"/>
+    <script src="js/dygraph.js"></script>
+    <script src="/js/common.js"></script>
+
+    <!-- 图层管理相关处理js -->
+    <script type="text/javascript" src="js/graphicManager.js"></script>
+    <link href="css/divGraphic1.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="css/f45_vline.css"/>
+    <script src="js/echartpop.js"></script>
+
+    <link rel="stylesheet" href="css/style2.css">
+    <link href='//at.alicdn.com/t/font_3062458_sxj7gff0mje.css' rel='stylesheet'>
+
+    <style>
+        .Loading {
+            background-color: black;
+            font-size: 100px;
+            width: 100%;
+            overflow: hidden;
+            position: fixed;
+            text-align: center;
+            top: 40%;
+            z-index: 99870101;
+        }
+
+    </style>
+</head>
+<body>
+<div class="sidebar MenuFor" style="pointer-events: none;">
+    <div class="logo-details">
+        <i class='iconfont bx-cloud'></i>
+        <span class="logo_name">智慧水利大数据</span>
+    </div>
+    <ul class="nav-links">
+        <li>
+            <a href="#" onclick="HomeB()">
+                <i class='iconfont bx-plug' ></i>
+                <span class="link_name">首页</span>
+            </a>
+            <ul class="sub-menu blank">
+                <li><a class="link_name" href="#">首页</a></li>
+            </ul>
+        </li>
+        <li>
+            <div class="iocn-link">
+                <a href="#" onclick="Moreevent()">
+                    <i class='iconfont bx-grid-alt' ></i>
+                    <span class="link_name">示例</span>
+                </a>
+                <i class='iconfont bx-chevron-down arrow' ></i>
+            </div>
+            <ul class="sub-menu">
+                <li><a class="link_name" href="#">示例</a></li>
+                <li><a href="#" onclick="showBDWeixinDemo()">北斗卫星</a></li>
+                <li><a href="#" onclick="showHuojianDemo()">火箭发射</a></li>
+                <li><a href="#" onclick="showOneRoad()">一带一路</a></li>
+                <li><a href="#" onclick="showRiver()">动态河流</a></li>
+                <li><a href="#" onclick="showOsm()">城市模型</a></li>
+                <li><a href="#" onclick="showPM()">人口迁移</a></li>
+                <li><a href="#" onclick="showGDP()">GDP统计图</a></li>
+                <li><a href="#" onclick="showData()">人口统计</a></li>
+                <li><a href="#" onclick="showline()">大坝变形</a></li>
+                <li><a href="#" onclick="showkmlsmk()">煤矿变形</a></li>
+                <li><a href="#" onclick="showkmls()">变形折线图</a></li>
+                <li><a href="#" onclick="showmodule()">倾斜模型</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#" onclick="Eyeadd()">
+                <i class='iconfont bx-pie-chart-alt-2' ></i>
+                <span class="link_name">鹰眼</span>
+            </a>
+            <ul class="sub-menu blank">
+                <li><a class="link_name" href="#">鹰眼</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#" onclick="Zoomin()">
+                <i class='iconfont bx-compass' ></i>
+                <span class="link_name">放大</span>
+            </a>
+            <ul class="sub-menu blank">
+                <li><a class="link_name" href="#">放大</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#" onclick="Zoomout()">
+                <i class='iconfont bx-history'></i>
+                <span class="link_name">缩小</span>
+            </a>
+            <ul class="sub-menu blank">
+                <li><a class="link_name" href="#">缩小</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#" onclick="NewReport()">
+                <i class='iconfont bx-cog' ></i>
+                <span class="link_name">新闻</span>
+            </a>
+            <ul class="sub-menu blank">
+                <li><a class="link_name" href="#">新闻</a></li>
+            </ul>
+        </li>
+        <li>
+        <li>
+            <a href="#"onclick="TeamMade()">
+                <i class='iconfont bx-cog2' ></i>
+                <span class="link_name">团队</span>
+            </a>
+            <ul class="sub-menu blank">
+                <li><a class="link_name" href="#">团队</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#" onclick="Fullwindows()">
+                <i class='iconfont bx-line-chart' ></i>
+                <span class="link_name">全屏</span>
+            </a>
+            <ul class="sub-menu blank">
+                <li><a class="link_name" href="#">全屏</a></li>
+            </ul>
+        </li>
+        <li>
+            <div class="profile-details">
+                <div class="profile-content">
+                    <img src="images/rc.png" alt="华水">
+                </div>
+                <div class="name-job">
+                    <div class="profile_name">刘文锴团队</div>
+                    <div class="job">更多</div>
+                </div>
+                <i class='iconfont bx-log-out' onclick="location.reload();" ></i>
+            </div>
+        </li>
+    </ul>
+</div >
+<section class="home-section">
+    <div class="home-content titlename" >
+        <i class='iconfont bx-menu' ></i>
+        <span class="text">华水智慧水利大数据平台</span>
+    </div>
+
+
+    <div class="Loading">加载中...</div>
+    <div id="mars3dContainer" class="mars3d-container"></div>
+
+    <div id="viewSL1" class="infoview5" style="display:none;">
+    </div>
+    <div id="showriver" class="infoview2" style="display:none;">
+        <span style="color: #cad1d1">建议：顺着水流方向选点，直线时多采集点</span>
+
+        <table class="mars-table">
+            <tr>
+                <td class="nametd">河宽度(米)：</td>
+                <td>
+                    <label for="txtWidth"></label><input type="number" class="form-control" id="txtWidth" value="280"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="nametd">河高度(米)：</td>
+                <td>
+                    <label for="txtHeight"></label><input type="number" class="form-control" id="txtHeight" value="30"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="nametd">水流速(米/秒)：</td>
+                <td>
+                    <label for="txtSpeed"></label><input id="txtSpeed" type="text"/>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input id="btnDrawLine" type="button" class="btn btn-primary" value="绘制河流"/>
+                    <input id="btnAddHeight" type="button" class="btn btn-primary" value="升高30米动画"/>
+                    <input id="btnLowerHeight" type="button" class="btn btn-primary" value="降低30米动画"/>
+                    <input id="btnClear" type="button" class="btn btn-danger" value="清除"/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="loadlegend" class="mars-load-legend" style="display:none;">
+        <p class="mars-load-head">One Belt One Road 图例</p>
+        <ul class="mars-load-introduce">
+            <li>
+                    <span class="mars-load-introduce-dai">
+                        <i></i>
+                        <i></i>
+                        <i></i>
+                    </span>
+                <div class="mars-load-info">
+                    <p>丝绸之路经济带</p>
+                    <p>Silk Road Economic Belt</p>
+                </div>
+            </li>
+            <li>
+                    <span class="mars-load-introduce-lu">
+                        <i></i>
+                        <i></i>
+                        <i></i>
+                    </span>
+                <div class="mars-load-info">
+                    <p>21世纪海上丝绸之路</p>
+                    <p>21st century Maritime Silk Road</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="populationView" id="popv" style="visibility: hidden;">
+    </div>
+    <div class="infoview2" id="osgb" style="visibility: hidden;">
+        <input type="button" class="btn btn-primary" value="开始漫游" onclick="StartPlay()"/>
+        <input type="button" class="btn btn-primary" value="提示" onclick="helpalert()"/>
+
+    </div>
+    <div class="infoview3" id="water" style="visibility: hidden;">
+        <div class="col col-sm-12">
+            闸门：
+            <div class="checkbox checkbox-primary checkbox-inline">
+                <input id="selecteAll" class="styled" type="checkbox" checked/>
+                <label for="selecteAll"> 全选 </label>
+            </div>
+
+            <div class="checkbox checkbox-primary checkbox-inline">
+                <input id="gate_13" class="styled chkZMKZ" type="checkbox" data-id="13" checked/>
+                <label for="gate_13"> 13号 </label>
+            </div>
+            <div class="checkbox checkbox-primary checkbox-inline">
+                <input id="gate_12" class="styled chkZMKZ" type="checkbox" data-id="12" checked/>
+                <label for="gate_12"> 12号 </label>
+            </div>
+
+            <div class="checkbox checkbox-primary checkbox-inline">
+                <input id="gate_11" class="styled chkZMKZ" type="checkbox" data-id="11" checked/>
+                <label for="gate_11"> 11号 </label>
+            </div>
+
+            <div class="checkbox checkbox-primary checkbox-inline">
+                <input id="gate_10" class="styled chkZMKZ" type="checkbox" data-id="10" checked/>
+                <label for="gate_10"> 10号 </label>
+            </div>
+
+            <div class="checkbox checkbox-primary checkbox-inline">
+                <input id="gate_9" class="styled chkZMKZ" type="checkbox" data-id="9" checked/>
+                <label for="gate_9"> 9号 </label>
+            </div>
+            &nbsp;&nbsp;
+
+            <div class="checkbox checkbox-primary checkbox-inline">
+                <input id="gate_8" class="styled chkZMKZ" type="checkbox" data-id="8" checked/>
+                <label for="gate_8"> 8号 </label>
+            </div>
+
+            <div class="checkbox checkbox-primary checkbox-inline">
+                <input id="gate_7" class="styled chkZMKZ" type="checkbox" data-id="7" checked/>
+                <label for="gate_7"> 7号 </label>
+            </div>
+
+            <div class="checkbox checkbox-primary checkbox-inline">
+                <input id="gate_6" class="styled chkZMKZ" type="checkbox" data-id="6" checked/>
+                <label for="gate_6"> 6号 </label>
+            </div>
+
+            <div class="checkbox checkbox-primary checkbox-inline">
+                <input id="gate_5" class="styled chkZMKZ" type="checkbox" data-id="5" checked/>
+                <label for="gate_5"> 5号 </label>
+            </div>
+
+            <div class="checkbox checkbox-primary checkbox-inline">
+                <input id="gate_4" class="styled chkZMKZ" type="checkbox" data-id="4" checked/>
+                <label for="gate_4"> 4号 </label>
+            </div>
+            <div class="checkbox checkbox-primary checkbox-inline">
+                <input id="gate_3" class="styled chkZMKZ" type="checkbox" data-id="3" checked/>
+                <label for="gate_3"> 3号 </label>
+            </div>
+            <div class="checkbox checkbox-primary checkbox-inline">
+                <input id="gate_2" class="styled chkZMKZ" type="checkbox" data-id="2" checked/>
+                <label for="gate_2"> 2号 </label>
+            </div>
+            <div class="checkbox checkbox-primary checkbox-inline">
+                <input id="gate_1" class="styled chkZMKZ" type="checkbox" data-id="1" checked/>
+                <label for="gate_1"> 1号 </label>
+            </div>
+        </div>
+    </div>
+    <div class="infoview4" id="bdv" style="visibility: hidden;">
+    </div>
+    <div id="JSTEXT" class="infoview infoview-js">
+        <div class="infoview_panel">
+            <div class="infoview_panel_scroll">
+                <div class="title">华水智慧水利大数据平台</div>
+                <div id="login-box">
+                    <h1 id="loginlab">登录</h1>
+                    <div class="form">
+                        <div class="item">
+                            <!-- <i class="fa fa-github-alt" style="font-size:24px"></i> -->
+                            <label for="username"></label><input id="username" type="text" placeholder="用户名">
+                        </div>
+                        <div class="item">
+                            <!-- <i class="fa fa-search" style="font-size:24px"></i> -->
+                            <label for="password"></label><input id="password" type="password" placeholder="密码">
+                        </div>
+                        <br/>
+                        <div style="font-size:10px;">华北水利水电大学刘文锴团队出品</div>
+                    </div>
+                    <br/>
+
+                </div>
+
+            </div>
+            <div id="checkin" class="btnbar_item" onclick="loadin()">开始使用</div>
+        </div>
+
+    </div>
+</section>
+<script type="text/javascript" src="main.js">
+
+</script>
+<script>
+
+    let arrow = document.querySelectorAll(".arrow");
+    for (var i = 0; i < arrow.length; i++) {
+        arrow[i].addEventListener("click", (e)=>{
+            let arrowParent = e.target.parentElement.parentElement;
+            arrowParent.classList.toggle("showMenu");
+        });
+    }
+
+    let sidebar = document.querySelector(".sidebar");
+    let sidebarBtn = document.querySelector(".bx-menu");
+    console.log(sidebarBtn);
+    sidebarBtn.addEventListener("click", ()=>{
+        sidebar.classList.toggle("close");
+    });
+</script>
+
+</body>
+
+
+</html>
