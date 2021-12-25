@@ -1,0 +1,77 @@
+﻿{
+  "map3d": {
+    "scene": {
+      "center": {
+        "lat": 36.472648,
+        "lng": 115.147703,
+        "alt": 23891502.7,
+        "heading": 92.1,
+        "pitch": -76.8,
+        "roll": 267.9
+      },
+      "showSun": true,
+      "showMoon": true,
+      "showSkyBox": true,
+      "showSkyAtmosphere": false,
+      "fog": true,
+      "fxaa": true,
+      "requestRenderMode": true,
+      "clock": {
+        "multiplier": 200
+      },
+      "globe": {
+        "showGroundAtmosphere": true,
+        "depthTestAgainstTerrain": false,
+        "baseColor": "#546a53"
+      },
+      "cameraController": {
+        "zoomFactor": 3.0,
+        "minimumZoomDistance": 1,
+        "maximumZoomDistance": 50000000,
+        "enableRotate": true,
+        "enableZoom": true
+      }
+    },
+    "control": {
+      "defaultContextMenu": true,
+      "homeButton": true,
+      "fullscreenButton": true,
+      "infoBox": true,
+      "selectionIndicator": true,
+      "mouseDownView": true,
+      "clockAnimate": "{ format: 'yyyy-MM-dd HH:mm:ss' }",
+      "locationBar": {
+        "fps": false,
+        "template": "<div>经度:{lng}</div><div>纬度:{lat}</div> <div>海拔：{alt}米 </div><div>Copyright©2021华北水利水电大学刘文锴团队版权所有</div>"
+      },
+      "compass": {"top": "10px", "right": "5px"},
+      "distanceLegend": {"left": "100px", "bottom": "2px"}
+    },
+    "terrain": {
+      "url": "//data.mars3d.cn/terrain",
+      "show": true
+    },
+    "basemaps": [
+      {
+        "id": 2021,
+        "pid": 10,
+        "name": "天地图影像",
+        "icon": "",
+        "type": "tdt",
+        "layer": "img_d",
+        "key": ["9ae78c51a0a28f06444d541148496e36"],
+        "show": true
+      },
+      {
+        "id": 2017,
+        "pid": 10,
+        "name": "蓝色底图",
+        "icon": "",
+        "type": "xyz",
+        "url": "http://map.geoq.cn/arcgis/rest/services/ChinaOnlineStreetPurplishBlue/MapServer/tile/{z}/{y}/{x}",
+        "chinaCRS": "GCJ02",
+        "enablePickFeatures": false
+      }
+    ]
+  }
+}
