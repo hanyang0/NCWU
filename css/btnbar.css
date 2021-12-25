@@ -1,0 +1,121 @@
+.btnbar {
+  position: absolute;
+  /* width: 100%; */
+  left:0;
+  right: calc(100% - 100px);
+  min-height: 40px;
+  bottom: 10px;
+  z-index: 9999;
+}
+
+.btnbar_panel {
+  width: 900px;
+  height: 40px;
+  margin: 0 auto;
+}
+
+.btnbar_items_panel {
+  width: 800px;
+  height: 40px;
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+}
+
+.btnbar_items_panel_scroll {
+  position: absolute;
+  width: 2000px;
+  height: 40px;
+  left: 20px;
+}
+
+.btnbar_item {
+  font: 16px "Microsoft YaHei";
+  color: rgba(255, 255, 255, 1);
+  pointer-events: auto;
+  display: inline-block;
+  width: 170px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  background: url(../images/button.png) no-repeat;
+  background-size: 100% 100%;
+  margin-right: 40px;
+  position: relative;
+  bottom: 50px;
+  left: 30%;
+}
+
+.btnbar_item_select {
+  background: url(../images/button_select.png) no-repeat;
+  background-size: 100% 100%;
+}
+
+.btnbar_left {
+  width: 40px;
+  height: 40px;
+  display: inline-block;
+  background: url(../images/left.png) center center / 70% 70% no-repeat;
+}
+
+.btnbar_right {
+  width: 40px;
+  height: 40px;
+  display: inline-block;
+  background: url(../images/right.png) center center / 70% 70% no-repeat;
+}
+
+/**info*/
+
+.infoview-js {
+  left: auto;
+  right: 60px;
+  height: calc(100% - 70px);
+  width: 40%;
+  background: none;
+  border: none;
+  box-shadow: none;
+  min-width: 300px;
+}
+
+.infoview_panel {
+  height: 100%;
+  width: 100%;
+  color: #ffffff;
+  padding: 10px;
+  background: url(../images/infoBox.png) no-repeat;
+  background-size: 100% 100%;
+  margin-right: 5px;
+  font-size: 20px;
+}
+
+.infoview_panel_scroll {
+  height: 98%;
+  width: 99%;
+  overflow-y: auto;
+}
+
+.infoview_panel div {
+  margin-top: 5px;
+}
+
+.infoview_panel label {
+  color: #03dae7;
+  display: inline-block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  line-height: 35px;
+}
+
+.infoview_panel span {
+  padding-left: 8px;
+  line-height: 35px;
+}
+
+.infoview_panel .title {
+  color: #ffec48;
+  font-size: 28px;
+  text-align: center;
+  font-weight: bold;
+  line-height: 50px;
+}
