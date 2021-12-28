@@ -6,6 +6,7 @@
       "properties": {
         "adcode": 140000,
         "name": "山西省",
+        "GDP": 17026.68,
         "RealPop": [2151719, 2049873],
         "Strman": [
           {
@@ -1981,6 +1982,7 @@
       "properties": {
         "adcode": 150000,
         "name": "内蒙古自治区",
+        "GDP": 17212.53,
         "RealPop": [1462776, 1403839],
         "Strman": [
           {
@@ -9734,6 +9736,7 @@
       "properties": {
         "adcode": 370000,
         "name": "山东省",
+        "GDP": 71067.53,
         "RealPop": [3423904, 3390080],
         "Strman": [
           {
@@ -12501,6 +12504,7 @@
       "properties": {
         "adcode": 410000,
         "name": "河南省",
+        "GDP": 54259.2,
         "RealPop": [4422318, 4204771],
         "Strman": [
           {
@@ -15068,6 +15072,7 @@
       "properties": {
         "adcode": 610000,
         "name": "陕西省",
+        "GDP": 25793.17,
         "RealPop": [4340803, 4127035],
         "Strman": [
           {
@@ -18187,6 +18192,7 @@
       "properties": {
         "adcode": 630000,
         "name": "青海省",
+        "GDP": 2965.95,
         "RealPop": [1136779, 1071929],
         "Strman": [
           {
@@ -22746,6 +22752,7 @@
       "properties": {
         "adcode": 640000,
         "name": "宁夏回族自治区",
+        "GDP": 3748.48,
         "RealPop": [1030563, 962525],
         "Strman": [
           {
@@ -24313,6 +24320,7 @@
       "properties": {
         "adcode": 510000,
         "name": "四川省",
+        "GDP": 46615.82,
         "RealPop": [7138705, 6908920],
         "Strman": [
           {
@@ -29176,6 +29184,7 @@
       "properties": {
         "adcode": 620000,
         "name": "甘肃省",
+        "GDP": 8718.3,
         "RealPop": [1849819, 1966344],
         "Strman": [
           {
