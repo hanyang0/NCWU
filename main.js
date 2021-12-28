@@ -1515,47 +1515,73 @@ function showGDP() {
     map.addLayer(geoJsonLayerGDP1);
     geoJsonLayerGDP = new mars3d.layer.GeoJsonLayer({
         id: 1987,
-        type: "geojson",
-        name: "淮海经济区11市",
-        url: "json/huaihai.json",
+        name: "黄河流域各省GDP统计",
+        url: "json/黄河流域各省.json",
         symbol: {
+            type:"polygon",
             styleOptions: {
-                materialType: mars3d.MaterialType.PolyGradient,
+                //materialType: mars3d.MaterialType.PolyGradient, //重要参数，指定材质
                 color: "#3388cc",
-                opacity: 0.7,
+                // opacity: 0.9,
                 alphaPower: 1.3,
-                length: "{gdp}",
+                //面中心点，显示文字的配置
+                label: {
+                    text: "{name}", //对应的属性名称
+                    opacity: 1,
+                    font_size: 40,
+                    color: "#ffffff",
+                    outline: true,
+                    pixelOffsetY: -50,
+                    outlineColor: "#000000",
+                    scaleByDistance: true,
+                    scaleByDistance_far: 20000000,
+                    scaleByDistance_farValue: 0.1,
+                    scaleByDistance_near: 1000,
+                    scaleByDistance_nearValue: 1,
+                },
             },
-            styleField: "Name",
-            styleFieldOptions: {
-                济宁市: {color: "#D4AACE"},
-                临沂市: {color: "#8DC763"},
-                菏泽市: {color: "#F7F39A"},
-                枣庄市: {color: "#F7F39A"},
-                徐州市: {color: "#96F0F1"},
-                宿迁市: {color: "#EAC9A8"},
-                连云港市: {color: "#F7F39A"},
-                商丘市: {color: "#D4AACE"},
-                宿州市: {color: "#8DC763"},
-                亳州市: {color: "#96F0F1"},
-                淮北市: {color: "#EAC9A8"},
+            callback: function (attr, styleOpt) {
+                let randomHeight = attr.GDP *2; //测试的高度
+                return {
+                    color: getColor(),
+                    diffHeight: randomHeight,
+                };
             },
         },
-        show: true,
     });
     map.addLayer(geoJsonLayerGDP);
+    let arrColor = ["rgb(15,176,255)", "rgb(18,76,154)", "#40C4E4", "#42B2BE", "rgb(51,176,204)", "#8CB7E5", "rgb(0,244,188)", "#139FF0"];
+
+    let index = 0;
+    function getColor() {
+        return arrColor[++index % arrColor.length];
+    }
+    geojsonhe = new mars3d.layer.GeoJsonLayer({
+        name: "黄河流域边界",
+        url: "json/黄河流域边界.json",
+        symbol: {
+            type: "wall",
+            styleOptions: {
+                width: 20,
+                diffHeight: 200000, // 墙高
+                materialType: mars3d.MaterialType.LineFlow,
+                speed: 10, // 速度
+                image: "images/fence.png", // 图片
+                repeatX: 1, // 重复数量
+                axisY: true, // 竖直方向
+                color: "#d5ea4a", // 颜色
+                opacity: 0.9, // 透明度
+                // 高亮时的样式
+            }
+        },
+    })
+    map.addLayer(geojsonhe);
     queryHuaiHaiApiData()
         .then(function (res) {
             conventChartsData(res.data); //单击显示的popup
             showYearZT(res.data); //柱状图
             bindHaihuaiPopup();
-            map.setCameraView({
-                "lat": 30.495542,
-                "lng": 117.58739,
-                "alt": 524927,
-                "heading": 356,
-                "pitch": -51
-            }, {duration: 3});
+            map.setCameraView({"lat":21.78063,"lng":111.126277,"alt":1947512,"heading":355,"pitch":-52}, {duration: 3});
         })
         .catch(function () {
             haoutil.msg("获取信息失败，请稍候再试");
@@ -1570,7 +1596,7 @@ function showGDP() {
 function queryHuaiHaiApiData() {
     return new Promise(function (resolve, reject) {
         $.ajax({
-            url: "json/huaihai-jj.json",
+            url: "json/黄河经济.json",
             type: "get",
             dataType: "json",
             success: function (result) {
@@ -1589,7 +1615,7 @@ function queryHuaiHaiApiData() {
  */
 function showYearZT(data) {
     const yearArr = Object.keys(data);
-    let arr = data[yearArr[0]];
+    let arr = data[yearArr[4]];
 
     for (let i = 0; i < arr.length; i += 1) {
         const attr = arr[i];
@@ -1599,10 +1625,10 @@ function showYearZT(data) {
         const num2 = attr["第二产业"];
         const num3 = attr["第三产业"];
         const numall = Number(num1 + num2 + num3).toFixed(2);
-        const html = `${attr["name"]}<br/>
-                        <span style="color:#63AEFF">第一产业：${num1}</span><br/>
-                        <span style="color:#FFB861">第二产业：${num2}</span><br/>
-                        <span style="color:#FF6D5D">第三产业：${num3}</span>`;
+        const html = `2019${attr["name"]}：<br/>
+                        <span style="color:#63AEFF">第一产业：${num1}亿元</span><br/>
+                        <span style="color:#FFB861">第二产业：${num2}亿元</span><br/>
+                        <span style="color:#FF6D5D">第三产业：${num3}亿元</span>`;
 
         var height1 = Math.floor(num1 * 10);
         var height2 = Math.floor(num2 * 10);
@@ -1645,8 +1671,8 @@ function createZT(position, len, color, html) {
         position: position,
         style: {
             length: len,
-            topRadius: 6000.0,
-            bottomRadius: 6000.0,
+            topRadius: 60000.0,
+            bottomRadius: 60000.0,
             color: color,
         },
     });
@@ -1660,17 +1686,15 @@ function createZT(position, len, color, html) {
 }
 
 var cityPosition = [
-    {name: "亳州", jwd: [116.203602, 33.496075]},
-    {name: "商丘", jwd: [115.871509, 34.297084]},
-    {name: "淮北", jwd: [116.688413, 33.689214]},
-    {name: "宿州", jwd: [117.234682, 33.740035]},
-    {name: "徐州", jwd: [117.70509, 34.350708]},
-    {name: "宿迁", jwd: [118.559349, 33.807355]},
-    {name: "连云港", jwd: [118.875445, 34.619808]},
-    {name: "临沂", jwd: [118.026908, 35.262767]},
-    {name: "枣庄", jwd: [117.320268, 35.072555]},
-    {name: "济宁", jwd: [116.856599, 35.500232]},
-    {name: "菏泽", jwd: [115.716086, 35.05629]},
+    {name: "四川省", jwd: [102.482777, 30.535158]},
+    {name: "甘肃省", jwd: [103.934925, 35.201088]},
+    {name: "宁夏回族自治区", jwd: [105.8662, 37.213784]},
+    {name: "青海省", jwd: [97.292455, 35.700049]},
+    {name: "陕西省", jwd: [108.352184, 34.150131]},
+    {name: "山西省", jwd: [111.286266, 38.4121]},
+    {name: "内蒙古自治区", jwd: [109.353202, 41.81189]},
+    {name: "河南省", jwd: [113.271593, 34.090351]},
+    {name: "山东省", jwd: [117.776857, 36.409937]}
 ];
 
 /**
@@ -1754,7 +1778,7 @@ function bindHaihuaiPopup() {
 }
 
 function getCityChartsOptions(attr) {
-    let arrGDPvalues = objCity[attr.code];
+    let arrGDPvalues = objCity[attr.adcode];
     if (!arrGDPvalues) {
         haoutil.msg(attr.Name + " 无经济数据");
         return;
@@ -1775,7 +1799,7 @@ function getCityChartsOptions(attr) {
             },
         },
         title: {
-            text: attr.Name + "   近五年GDP（亿元）",
+            text: attr.name + "   近五年GDP（亿元）",
             top: "10",
             left: "5",
             textStyle: {
@@ -1888,60 +1912,7 @@ function getCityChartsOptions(attr) {
 function showData() {
     removeAll();
     map.basemap = 2017;
-/*    geoJsonLayerGDP = new mars3d.layer.GeoJsonLayer({
-        name: "黄河流域各省人口统计",
-        url: "json/黄河流域各省.json",
-        symbol: {
-            styleOptions: {
-                color: "#4881a7",
-                opacity: 0.7,
-                outline: true,
-                outlineColor: "#f1f3f4",
-                outlineWidth: 3,
-            },
-            label: {
-                text: "{name}",
-                font_size: 25,
-                color: "#ffffff",
-                outline: true,
-                outlineColor: "#000000",
-                pixelOffsetY: -25,
-                scaleByDistance: true,
-                scaleByDistance_far: 80000,
-                scaleByDistance_farValue: 0.5,
-                scaleByDistance_near: 1000,
-                scaleByDistance_nearValue: 1,
-                distanceDisplayCondition: true,
-                distanceDisplayCondition_far: 80000,
-                distanceDisplayCondition_near: 0,
-            },
-/!*            styleField: "name",
-            styleFieldOptions: {
-                山西省: {color: "#D4AACE"},
-                内蒙古自治区: {color: "#0a6cee"},
-                青海省: {color: "#ff6e6e"},
-                河南省: {color: "#96F0F1"},
-                四川省: {color: "#d38dea"},
-                甘肃省: {color: "#67ee48"},
-                宁夏回族自治区: {color: "#D4AACE"},
-                山东省: {color: "#EAC9A8"},
-                陕西省: {color: "#9cb3ee"},
-            },*!/
-        },
-        show: true,
-        popup:"all",
-        /!*popup: [
-            {field: "name", name: "地区："},
-            {field: "m", name: "地区人口："},
-            {field: "Floor", name: "层数"},
-            {field: "fm", name: "男性：", unit: "人"},
-            {field: "mn", name: "男性占比："},
-            {field: "sum", name: "女性：", unit: "人"},
-            {field: "fmn", name: "女性占比："},
 
-        ],*!/
-    });
-    map.addLayer(geoJsonLayerGDP);*/
     geoJsonLayerGDP = new mars3d.layer.GeoJsonLayer({
         name: "黄河流域各省人口统计",
         url: "json/黄河流域各省.json",
